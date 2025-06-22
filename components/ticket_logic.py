@@ -135,7 +135,7 @@ class TicketLogic:
                 raise Exception("页面加载失败: 无法找到app元素")
             
             # 抢票主循环 - 高频刷新模式
-            refresh_interval = 0.5  # 100ms = 10次/秒
+            refresh_interval = 0.1  # 100ms = 10次/秒
             while self.is_running:
                 try:
                     # 查找class为"buy-link"的元素
@@ -176,8 +176,41 @@ class TicketLogic:
                             self.ui.logger.log(f"页面标题: {self.driver.title}")
                             self.ui.logger.log(f"页面状态码: {self.driver.execute_script('return document.readyState')}")
                             
-                            # 检查是否跳转到确认页面
-                            if "确认订单" in self.driver.title:
+                            # 检查是否进入选座页面
+                            if "选座" in self.driver.title or "seat" in self.driver.current_url.lower():
+                                self.ui.logger.log("已进入选座页面，开始选择座位")
+                                
+                                # 等待座位加载完成
+                                try:
+                                    WebDriverWait(self.driver, 10).until(
+                                        EC.presence_of_element_located((By.CSS_SELECTOR, ".seat-item")))
+                                    
+                                    # 选择第一个可用座位
+                                    available_seats = self.driver.find_elements(
+                                        By.CSS_SELECTOR, ".seat-item.available")
+                                    if available_seats:
+                                        self.ui.logger.log(f"找到{len(available_seats)}个可用座位")
+                                        available_seats[0].click()
+                                        self.ui.logger.log("已选择第一个可用座位")
+                                        
+                                        # 点击立即购买按钮
+                                        buy_btn = WebDriverWait(self.driver, 10).until(
+                                            EC.element_to_be_clickable((By.CSS_SELECTOR, ".buy-btn")))
+                                        buy_btn.click()
+                                        self.ui.logger.log("已点击立即购买按钮")
+                                        
+                                        # 检查是否跳转到确认页面
+                                        WebDriverWait(self.driver, 10).until(
+                                            lambda d: "确认订单" in d.title)
+                                        self.ui.logger.log("已跳转到订单确认页面")
+                                        break
+                                    else:
+                                        self.ui.logger.log("没有可用座位，刷新重试")
+                                        self.driver.refresh()
+                                except Exception as e:
+                                    self.ui.logger.log(f"选座过程中出错: {str(e)}")
+                                    self.driver.refresh()
+                            elif "确认订单" in self.driver.title:
                                 self.ui.logger.log("已跳转到订单确认页面")
                                 break
                         except Exception as e:
