@@ -10,6 +10,8 @@ from selenium.webdriver.common.by import By
 from selenium.webdriver.support.ui import WebDriverWait
 from selenium.webdriver.support import expected_conditions as EC
 from selenium.webdriver.common.desired_capabilities import DesiredCapabilities
+from webdriver_manager.chrome import ChromeDriverManager
+from selenium.webdriver.chrome.service import Service
 
 
 class Concert(object):
@@ -47,8 +49,8 @@ class Concert(object):
         self.driver.find_element(by=By.CLASS_NAME, value='login-user').click()
         while self.driver.title.find('大麦网-全球演出赛事官方购票平台') != -1:  # 等待网页加载完成
             sleep(1)
-        print(u"###请扫码登录###")
-        while self.driver.title == '大麦登录':  # 等待扫码完成
+        print(u"###请登录###")
+        while self.driver.title == '大麦登录':  # 等待完成
             sleep(1)
         dump(self.driver.get_cookies(), open("cookies.pkl", "wb"))
         print(u"###Cookie保存成功###")
@@ -80,7 +82,8 @@ class Concert(object):
     def enter_concert(self):
         print(u'###打开浏览器，进入大麦网###')
         if not exists('cookies.pkl'):   # 如果不存在cookie.pkl,就获取一下
-            self.driver = webdriver.Chrome(executable_path=self.driver_path)
+            # 自动下载和管理 ChromeDriver
+            self.driver = webdriver.Chrome(service=Service(ChromeDriverManager().install()))
             self.get_cookie()
             print(u'###成功获取Cookie，重启浏览器###')
             self.driver.quit()
@@ -100,22 +103,22 @@ class Concert(object):
         capa = DesiredCapabilities.CHROME
         # normal, eager, none
         capa["pageLoadStrategy"] = "eager"
-        self.driver = webdriver.Chrome(
-            executable_path=self.driver_path, options=options, desired_capabilities=capa)
+        service = Service(ChromeDriverManager().install())
+        self.driver = webdriver.Chrome(service=service)
         # 登录到具体抢购页面
         self.login()
         self.driver.refresh()
-        # try:
-        #     # 等待nickname出现
-        #     locator = (By.XPATH, "/html/body/div[1]/div/div[3]/div[1]/a[2]/div")
-        #     WebDriverWait(self.driver, 5, 0.3).until(EC.text_to_be_present_in_element(locator, self.nick_name))
-        #     self.status = 1
-        #     print(u"###登录成功###")
-        #     self.time_start = time()
-        # except:
-        #     self.status = 0
-        #     self.driver.quit()
-        #     raise Exception(u"***错误：登录失败,请删除cookie后重试***")
+        try:
+            # 等待nickname出现
+            locator = (By.XPATH, "/html/body/div[1]/div/div[3]/div[1]/a[2]/div")
+            WebDriverWait(self.driver, 5, 0.3).until(EC.text_to_be_present_in_element(locator, self.nick_name))
+            self.status = 1
+            print(u"###登录成功###")
+            self.time_start = time()
+        except:
+            self.status = 0
+            self.driver.quit()
+            raise Exception(u"***错误：登录失败,请删除cookie后重试***")
 
     def click_util(self, btn, locator):
         while True:
@@ -350,7 +353,7 @@ class Concert(object):
 
 if __name__ == '__main__':
     try:
-        with open('./config.json', 'r', encoding='utf-8') as f:
+        with open('./config_damai.json', 'r', encoding='utf-8') as f:
             config = loads(f.read())
             # params: 场次优先级，票价优先级，实名者序号, 用户昵称， 购买票数， 官网网址， 目标网址, 浏览器驱动地址
         con = Concert(config['date'], config['sess'], config['price'], config['real_name'], config['nick_name'],

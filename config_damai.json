@@ -1,0 +1,12 @@
+{
+    "date" : "2021-05-01",
+    "sess" : 1,
+    "price" : 0.01,
+    "real_name": "测试",
+    "nick_name": "测试",
+    "ticket_num": 1,
+    "viewer_person": "测试",
+    "damai_url": "https://www.damai.cn/",
+    "target_url": "https://detail.damai.cn/item.htm?spm=a2oeg.home.card_1.ditem_4.52b023e15ILo2u&id=935067086719",
+    "driver_path": "C:/Users/Semon/Desktop/prj/ticket/damaihelper/chromedriver.exe"
+}

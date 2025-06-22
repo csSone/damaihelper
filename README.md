@@ -81,7 +81,6 @@
 1. **账户信息配置**：在脚本的配置文件中（通常是 `config.json` 或 `settings.ini`），您需要为每个账户设置一个账户标识符，并为其指定登录凭据和其他必要的个人信息。例如：
 
 ```json
-<<<<<<< main
 {
     "date": [
         14
@@ -125,20 +124,6 @@
             "title": "列入待抢的链接地址",
             "zhoujielun_0403": "https://m.damai.cn/damai/detail/item.html?itemId=607865020360&from=appshare&sqm=dianying.h5.unknown.value.hlw_a2o71_28004194&prev_page=8hu5vjnq54&spm=a2o71.28004194.785344.item_horizontal_3"
         }
-=======
-"accounts": {
-    "account1": {
-        "username": "user1@example.com",
-        "password": "password1",
-        "target_url": "https://m.damai.cn/",
-        "auto_buy_time": "08:30:00"
-    },
-    "account2": {
-        "username": "user2@example.com",
-        "password": "password2",
-        "target_url": "https://m.taopiaopiao.com/",
-        "auto_buy_time": "08:30:00"
->>>>>>> main
     }
 }
 ```

@@ -1,0 +1,116 @@
+{
+  "page_title": "登录",
+  "page_url": "https://m.damai.cn/damai/minilogin/index.html?returnUrl=https%3A%2F%2Fm.damai.cn%2Fshows%2Fseat.html%3FitemId%3D934567114275%26userPromotion%3Dfalse%26toDxOrder%3Dtrue%26quickBuy%3D0%26privilegeActId%3D%26channel%3Ddamai_app%26performId%3D234412094%26skuId%3D5826090165269%26projectId%3D228354020%26signKey%3DcEl2bXVYXw9iRVl%252BTk11eXdff2hxW10KakdVelo3GBcTIgoSBzI6bBIgOB9aCz09ER8uMDUEHVE2B1d%252FSEpke3haem9nDgZUPBpWeUlUZXlyWX9qcVhfHjAbASMXQ2N4bFl%252BbHFdWgFgRksvFhQ5JntbeXJyXFsIYkBVfEheNScsBSFldF1FC2JGXnxMSGRxZgkgMi4DUg1jWF59S0hleHhddngiAgVXPU9YfFVLZ3pzWntudFVPWzwYAiJCTWY%253D%26rtc%3D1&spm=a2o71.seatselect.0.0",
+  "elements": [
+    {
+      "tag": "script",
+      "text": "",
+      "id": "",
+      "class": "",
+      "xpath": "/head/script[1]",
+      "visible": false,
+      "enabled": true
+    },
+    {
+      "tag": "title",
+      "text": "",
+      "id": "",
+      "class": "",
+      "xpath": "/head/title",
+      "visible": false,
+      "enabled": true
+    },
+    {
+      "tag": "script",
+      "text": "",
+      "id": "",
+      "class": "",
+      "xpath": "/head/script[2]",
+      "visible": false,
+      "enabled": true
+    },
+    {
+      "tag": "script",
+      "text": "",
+      "id": "",
+      "class": "",
+      "xpath": "/head/script[3]",
+      "visible": false,
+      "enabled": true
+    },
+    {
+      "tag": "script",
+      "text": "",
+      "id": "",
+      "class": "",
+      "xpath": "/head/script[4]",
+      "visible": false,
+      "enabled": true
+    },
+    {
+      "tag": "style",
+      "text": "",
+      "id": "",
+      "class": "",
+      "xpath": "/head/style[1]",
+      "visible": false,
+      "enabled": true
+    },
+    {
+      "tag": "style",
+      "text": "",
+      "id": "",
+      "class": "",
+      "xpath": "/head/style[2]",
+      "visible": false,
+      "enabled": true
+    },
+    {
+      "tag": "div",
+      "text": "",
+      "id": "mini-login-box",
+      "class": "",
+      "xpath": "/body/div[1]",
+      "visible": true,
+      "enabled": true
+    },
+    {
+      "tag": "span",
+      "text": "",
+      "id": "",
+      "class": "",
+      "xpath": "/body/div[2]/div/div/span",
+      "visible": false,
+      "enabled": true
+    },
+    {
+      "tag": "div",
+      "text": "",
+      "id": "",
+      "class": "dm-loading__box",
+      "xpath": "/body/div[3]/div",
+      "visible": false,
+      "enabled": true
+    },
+    {
+      "tag": "div",
+      "text": "",
+      "id": "",
+      "class": "dm-loading__item",
+      "xpath": "/body/div[3]/div/div",
+      "visible": false,
+      "enabled": true
+    },
+    {
+      "tag": "span",
+      "text": "",
+      "id": "",
+      "class": "dm-loading__words",
+      "xpath": "/body/div[3]/div/span",
+      "visible": false,
+      "enabled": true
+    }
+  ],
+  "potential_buy_buttons": [],
+  "all_buttons": []
+}
